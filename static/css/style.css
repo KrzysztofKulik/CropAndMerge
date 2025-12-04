@@ -1,0 +1,350 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.upload-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.upload-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.upload-card:hover {
+    transform: translateY(-5px);
+}
+
+.upload-card h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.3rem;
+}
+
+.file-upload {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.upload-label {
+    display: block;
+    padding: 20px;
+    border: 3px dashed #667eea;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f8f9ff;
+}
+
+.upload-label:hover {
+    border-color: #764ba2;
+    background: #f0f2ff;
+    transform: scale(1.02);
+}
+
+.upload-label span {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.image-preview {
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.controls-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.controls-section h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.3rem;
+}
+
+.controls-info {
+    padding: 20px;
+    background: #f8f9ff;
+    border-radius: 10px;
+    border: 2px dashed #667eea;
+}
+
+.control-instruction {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.instruction-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.instruction-item .icon {
+    font-size: 1.2rem;
+    width: 30px;
+    text-align: center;
+}
+
+.instruction-item span:not(.icon) {
+    font-weight: 500;
+    color: #333;
+}
+
+#positionDisplay,
+#scaleDisplay {
+    font-weight: bold;
+    color: #667eea;
+}
+
+.preview-section, .result-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.preview-section h3, .result-section h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.3rem;
+}
+
+.canvas-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    border: 2px solid #eee;
+}
+
+#previewCanvas {
+    max-width: 100%;
+    max-height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: grab;
+}
+
+#previewCanvas:active {
+    cursor: grabbing;
+}
+
+#previewCanvas.dragging {
+    cursor: grabbing;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: #48bb78;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #38a169;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #a0aec0;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #718096;
+    transform: translateY(-2px);
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+#resultPreview {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    border: 2px solid #eee;
+}
+
+#resultPreview img {
+    max-width: 100%;
+    max-height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .upload-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .controls-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Success/Error messages */
+.message {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.message.success {
+    background: #c6f6d5;
+    color: #22543d;
+    border: 1px solid #9ae6b4;
+}
+
+.message.error {
+    background: #fed7d7;
+    color: #742a2a;
+    border: 1px solid #fc8181;
+}

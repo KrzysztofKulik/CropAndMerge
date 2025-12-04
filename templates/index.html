@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop and Merge - Edytor Obrazów</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Crop and Merge - Edytor Obrazów</h1>
+            <p>Wczytaj, edytuj i łącz obrazy PNG</p>
+        </header>
+
+        <div class="upload-section">
+            <div class="upload-card">
+                <h3>Obraz Górny (na wierzchu)</h3>
+                <div class="file-upload">
+                    <input type="file" id="baseImageInput" accept=".png,.jpg,.jpeg,.gif" />
+                    <label for="baseImageInput" class="upload-label">
+                        <span>Wybierz obraz górny</span>
+                    </label>
+                </div>
+                <div id="baseImagePreview" class="image-preview"></div>
+            </div>
+
+            <div class="upload-card">
+                <h3>Obraz Dolny (pod spodem)</h3>
+                <div class="file-upload">
+                    <input type="file" id="overlayImageInput" accept=".png,.jpg,.jpeg,.gif" />
+                    <label for="overlayImageInput" class="upload-label">
+                        <span>Wybierz obraz dolny</span>
+                    </label>
+                </div>
+                <div id="overlayImagePreview" class="image-preview"></div>
+            </div>
+        </div>
+
+        <div class="controls-section" id="controlsSection" style="display: none;">
+            <h3>Kontrola Obrazu Dolnego</h3>
+            <div class="controls-info">
+                <div class="control-instruction">
+                    <div class="instruction-item">
+                        <span class="icon">🖱️</span>
+                        <span>Przeciągnij obraz, aby go przesunąć</span>
+                    </div>
+                    <div class="instruction-item">
+                        <span class="icon">🔄</span>
+                        <span>Kółko myszy - skalowanie obrazu</span>
+                    </div>
+                    <div class="instruction-item">
+                        <span class="icon">📏</span>
+                        <span>Pozycja: <span id="positionDisplay">X: 0, Y: 0</span></span>
+                    </div>
+                    <div class="instruction-item">
+                        <span class="icon">🔍</span>
+                        <span>Skala: <span id="scaleDisplay">100%</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-section" id="previewSection" style="display: none;">
+            <h3>Podgląd Połączonych Obrazów</h3>
+            <div class="canvas-container">
+                <canvas id="previewCanvas"></canvas>
+            </div>
+            <div class="action-buttons">
+                <button id="updatePreview" class="btn btn-primary">Zaktualizuj Podgląd</button>
+                <button id="mergeImages" class="btn btn-success">Połącz i Pobierz</button>
+                <button id="resetImages" class="btn btn-secondary">Reset</button>
+            </div>
+        </div>
+
+        <div class="loading" id="loadingSpinner" style="display: none;">
+            <div class="spinner"></div>
+            <p>Przetwarzanie obrazów...</p>
+        </div>
+
+        <div class="result-section" id="resultSection" style="display: none;">
+            <h3>Wynik</h3>
+            <div id="resultPreview"></div>
+            <div class="action-buttons">
+                <a id="downloadLink" href="#" class="btn btn-success" style="display: none;">Pobierz Obraz</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
