@@ -143,6 +143,34 @@ def download_file(filename):
     except Exception as e:
         return jsonify({'error': f'Error downloading file: {str(e)}'}), 500
 
+@app.route('/get-default-image')
+def get_default_image():
+    """Return default base image information"""
+    try:
+        default_image_path = os.path.join('static', 'images', 'default-base.png')
+        if os.path.exists(default_image_path):
+            with Image.open(default_image_path) as img:
+                width, height = img.size
+                img_base64 = image_to_base64(img)
+                
+            # Copy to uploads folder with unique name
+            unique_filename = f"default_base_{uuid.uuid4()}.png"
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
+            with Image.open(default_image_path) as img:
+                img.save(upload_path)
+            
+            return jsonify({
+                'success': True,
+                'filename': unique_filename,
+                'width': width,
+                'height': height,
+                'image_data': img_base64
+            })
+        else:
+            return jsonify({'success': False, 'error': 'Default image not found'}), 404
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 @app.route('/health')
 def health_check():
     return jsonify({'status': 'healthy'})

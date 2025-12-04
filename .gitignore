@@ -3,6 +3,9 @@
 uploads/*
 !uploads/.gitkeep
 
+# Allow default images in static
+!static/images/default-base.png
+
 # Pliki tymczasowe
 temp/*
 !temp/.gitkeep

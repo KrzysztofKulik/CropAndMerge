@@ -20,6 +20,23 @@ class ImageEditor {
         this.canvasRect = null;
         
         this.initializeEventListeners();
+        this.loadDefaultBaseImage();
+    }
+
+    async loadDefaultBaseImage() {
+        try {
+            const response = await fetch('/get-default-image');
+            const result = await response.json();
+
+            if (result.success) {
+                this.baseImageData = result;
+                this.displayImagePreview('baseImagePreview', result.image_data);
+                this.setupCanvas(result.width, result.height);
+                this.showMessage('Obraz górny został wczytany automatycznie', 'success');
+            }
+        } catch (error) {
+            console.log('Nie udało się wczytać domyślnego obrazu:', error);
+        }
     }
 
     initializeEventListeners() {
