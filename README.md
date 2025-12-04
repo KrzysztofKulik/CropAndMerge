@@ -47,6 +47,31 @@ python app.py
 
 3. Otwórz przeglądarkę i przejdź do `http://localhost:5000`
 
+## Wdrożenie na Render.com (Zalecane)
+
+### Kroki wdrożenia
+
+1. **Połącz z GitHub**:
+   - Zaloguj się na [Render.com](https://render.com)
+   - Kliknij "New +" i wybierz "Web Service"
+   - Połącz swoje repozytorium GitHub
+
+2. **Konfiguracja automatyczna**:
+   - Render automatycznie wykryje plik `render.yaml`
+   - Aplikacja zostanie skonfigurowana z Python 3.11.9
+   - Port i inne zmienne środowiskowe będą ustawione automatycznie
+
+3. **Deploy**:
+   - Kliknij "Create Web Service"
+   - Render automatycznie wdroży aplikację
+   - Otrzymasz publiczny URL do aplikacji
+
+### Konfiguracja ręczna (jeśli potrzebna)
+
+- **Build Command**: `pip install -r requirements.txt`
+- **Start Command**: `gunicorn app:app`
+- **Python Version**: 3.11.9
+
 ## Wdrożenie na AWS Elastic Beanstalk
 
 ### Wymagania
@@ -59,7 +84,7 @@ python app.py
 1. **Inicjalizacja projektu Elastic Beanstalk**:
 ```bash
 cd CropAndMerge
-eb init -p python-3.9 crop-and-merge-app
+eb init -p python-3.11 crop-and-merge-app
 ```
 
 2. **Utworzenie środowiska**:
@@ -87,7 +112,7 @@ Aplikacja automatycznie konfiguruje się dla środowiska produkcyjnego:
 ### Monitorowanie
 
 - **Health check endpoint**: `/health`
-- **Logi**: Dostępne przez AWS Console lub `eb logs`
+- **Logi**: Dostępne przez AWS Console, Render Dashboard, lub `eb logs`
 
 ## Użytkowanie
 
